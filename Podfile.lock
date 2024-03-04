@@ -1,0 +1,32 @@
+PODS:
+  - Alamofire (5.8.1)
+  - TensorFlowLiteC (2.14.0):
+    - TensorFlowLiteC/Core (= 2.14.0)
+  - TensorFlowLiteC/Core (2.14.0)
+  - TensorFlowLiteSwift (2.14.0):
+    - TensorFlowLiteSwift/Core (= 2.14.0)
+  - TensorFlowLiteSwift/Core (2.14.0):
+    - TensorFlowLiteC (= 2.14.0)
+  - TensorFlowLiteTaskVision (0.4.3)
+
+DEPENDENCIES:
+  - Alamofire (~> 5.5)
+  - TensorFlowLiteSwift
+  - TensorFlowLiteTaskVision
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - TensorFlowLiteC
+    - TensorFlowLiteSwift
+    - TensorFlowLiteTaskVision
+
+SPEC CHECKSUMS:
+  Alamofire: 3ca42e259043ee0dc5c0cdd76c4bc568b8e42af7
+  TensorFlowLiteC: a836de9b6e6018665ccc349538bdd2c3b80dd7a5
+  TensorFlowLiteSwift: f706b143b69d7bf433aba7b08049bdd11c321a10
+  TensorFlowLiteTaskVision: 125d5b49d325ba2cf3938454da5f74a1cbfe0552
+
+PODFILE CHECKSUM: 704bb67f51ad9ef0f13737bb1184ba3591ceaac4
+
+COCOAPODS: 1.11.3

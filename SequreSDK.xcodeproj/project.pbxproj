@@ -1,0 +1,638 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		107B847C9B417E3E73F7F34E /* Pods_SequreSDK_SequreSDKTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D705954F8C04DAA20BF52F77 /* Pods_SequreSDK_SequreSDKTests.framework */; };
+		8E3CA8012B94D0BF00B9A1DB /* SequreSDK.docc in Sources */ = {isa = PBXBuildFile; fileRef = 8E3CA8002B94D0BF00B9A1DB /* SequreSDK.docc */; };
+		8E3CA8072B94D0BF00B9A1DB /* SequreSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E3CA7FC2B94D0BF00B9A1DB /* SequreSDK.framework */; };
+		8E3CA80C2B94D0BF00B9A1DB /* SequreSDKTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3CA80B2B94D0BF00B9A1DB /* SequreSDKTests.swift */; };
+		8E3CA80D2B94D0BF00B9A1DB /* SequreSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 8E3CA7FF2B94D0BF00B9A1DB /* SequreSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8E3CA83A2B9559E600B9A1DB /* SequreCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3CA8352B9559E500B9A1DB /* SequreCameraView.swift */; };
+		8E3CA83B2B9559E600B9A1DB /* SequreScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3CA8362B9559E500B9A1DB /* SequreScannerView.swift */; };
+		8E3CA83C2B9559E600B9A1DB /* SequreCameraService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3CA8372B9559E500B9A1DB /* SequreCameraService.swift */; };
+		8E3CA83D2B9559E600B9A1DB /* SequreApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3CA8382B9559E500B9A1DB /* SequreApi.swift */; };
+		8E3CA83E2B9559E600B9A1DB /* SequreResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3CA8392B9559E500B9A1DB /* SequreResult.swift */; };
+		8E8DDDBB2B96266A0064ED29 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E8DDDBA2B96266A0064ED29 /* Assets.xcassets */; };
+		8E8DDDC32B9629740064ED29 /* Assets.xcassets in Sources */ = {isa = PBXBuildFile; fileRef = 8E8DDDBA2B96266A0064ED29 /* Assets.xcassets */; };
+		8E8DDDC92B962CD00064ED29 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8DDDC82B962CD00064ED29 /* ColorExtension.swift */; };
+		8E8DDDCB2B962FED0064ED29 /* ClassificationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8DDDCA2B962FEB0064ED29 /* ClassificationHelper.swift */; };
+		8E8DDDCD2B9630080064ED29 /* ObjectDetectionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8DDDCC2B9630080064ED29 /* ObjectDetectionHelper.swift */; };
+		8E8DDDCF2B9630960064ED29 /* tflite in Resources */ = {isa = PBXBuildFile; fileRef = 8E8DDDCE2B9630960064ED29 /* tflite */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		8E3CA8082B94D0BF00B9A1DB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8E3CA7F32B94D0BF00B9A1DB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8E3CA7FB2B94D0BF00B9A1DB;
+			remoteInfo = SequreSDK;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		291C34DAD172DE877B437836 /* Pods-SequreSDK.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SequreSDK.debug.xcconfig"; path = "Target Support Files/Pods-SequreSDK/Pods-SequreSDK.debug.xcconfig"; sourceTree = "<group>"; };
+		668ECC91BE516C25F5BEEC5F /* Pods-SequreSDK-SequreSDKTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SequreSDK-SequreSDKTests.debug.xcconfig"; path = "Target Support Files/Pods-SequreSDK-SequreSDKTests/Pods-SequreSDK-SequreSDKTests.debug.xcconfig"; sourceTree = "<group>"; };
+		760804771CBAE80C655B6F7C /* Pods-SequreSDK.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SequreSDK.release.xcconfig"; path = "Target Support Files/Pods-SequreSDK/Pods-SequreSDK.release.xcconfig"; sourceTree = "<group>"; };
+		874FEF8ADD1129CC7B0F718F /* Pods_SequreSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SequreSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8E3CA7FC2B94D0BF00B9A1DB /* SequreSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SequreSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8E3CA7FF2B94D0BF00B9A1DB /* SequreSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SequreSDK.h; sourceTree = "<group>"; };
+		8E3CA8002B94D0BF00B9A1DB /* SequreSDK.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = SequreSDK.docc; sourceTree = "<group>"; };
+		8E3CA8062B94D0BF00B9A1DB /* SequreSDKTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SequreSDKTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8E3CA80B2B94D0BF00B9A1DB /* SequreSDKTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SequreSDKTests.swift; sourceTree = "<group>"; };
+		8E3CA8352B9559E500B9A1DB /* SequreCameraView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequreCameraView.swift; sourceTree = "<group>"; };
+		8E3CA8362B9559E500B9A1DB /* SequreScannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequreScannerView.swift; sourceTree = "<group>"; };
+		8E3CA8372B9559E500B9A1DB /* SequreCameraService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequreCameraService.swift; sourceTree = "<group>"; };
+		8E3CA8382B9559E500B9A1DB /* SequreApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequreApi.swift; sourceTree = "<group>"; };
+		8E3CA8392B9559E500B9A1DB /* SequreResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequreResult.swift; sourceTree = "<group>"; };
+		8E8DDDBA2B96266A0064ED29 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8E8DDDBC2B9627FA0064ED29 /* Pods_SequreSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_SequreSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8E8DDDC82B962CD00064ED29 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
+		8E8DDDCA2B962FEB0064ED29 /* ClassificationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassificationHelper.swift; sourceTree = "<group>"; };
+		8E8DDDCC2B9630080064ED29 /* ObjectDetectionHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectDetectionHelper.swift; sourceTree = "<group>"; };
+		8E8DDDCE2B9630960064ED29 /* tflite */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tflite; sourceTree = "<group>"; };
+		99F9DC0C7C61C73B28D1CE80 /* Pods-SequreSDK-SequreSDKTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SequreSDK-SequreSDKTests.release.xcconfig"; path = "Target Support Files/Pods-SequreSDK-SequreSDKTests/Pods-SequreSDK-SequreSDKTests.release.xcconfig"; sourceTree = "<group>"; };
+		D705954F8C04DAA20BF52F77 /* Pods_SequreSDK_SequreSDKTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SequreSDK_SequreSDKTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8E3CA7F92B94D0BF00B9A1DB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8E3CA8032B94D0BF00B9A1DB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8E3CA8072B94D0BF00B9A1DB /* SequreSDK.framework in Frameworks */,
+				107B847C9B417E3E73F7F34E /* Pods_SequreSDK_SequreSDKTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8E3CA7F22B94D0BF00B9A1DB = {
+			isa = PBXGroup;
+			children = (
+				8E3CA7FE2B94D0BF00B9A1DB /* SequreSDK */,
+				8E3CA80A2B94D0BF00B9A1DB /* SequreSDKTests */,
+				8E3CA7FD2B94D0BF00B9A1DB /* Products */,
+				9697CF6B12B9499C0C4CE8D2 /* Pods */,
+				C5A62BC49DB36FB3D278E9C8 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		8E3CA7FD2B94D0BF00B9A1DB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8E3CA7FC2B94D0BF00B9A1DB /* SequreSDK.framework */,
+				8E3CA8062B94D0BF00B9A1DB /* SequreSDKTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8E3CA7FE2B94D0BF00B9A1DB /* SequreSDK */ = {
+			isa = PBXGroup;
+			children = (
+				8E8DDDCE2B9630960064ED29 /* tflite */,
+				8E8DDDCA2B962FEB0064ED29 /* ClassificationHelper.swift */,
+				8E8DDDCC2B9630080064ED29 /* ObjectDetectionHelper.swift */,
+				8E3CA8382B9559E500B9A1DB /* SequreApi.swift */,
+				8E3CA8372B9559E500B9A1DB /* SequreCameraService.swift */,
+				8E3CA8352B9559E500B9A1DB /* SequreCameraView.swift */,
+				8E3CA8392B9559E500B9A1DB /* SequreResult.swift */,
+				8E3CA8362B9559E500B9A1DB /* SequreScannerView.swift */,
+				8E3CA7FF2B94D0BF00B9A1DB /* SequreSDK.h */,
+				8E3CA8002B94D0BF00B9A1DB /* SequreSDK.docc */,
+				8E8DDDBA2B96266A0064ED29 /* Assets.xcassets */,
+				8E8DDDC82B962CD00064ED29 /* ColorExtension.swift */,
+			);
+			path = SequreSDK;
+			sourceTree = "<group>";
+		};
+		8E3CA80A2B94D0BF00B9A1DB /* SequreSDKTests */ = {
+			isa = PBXGroup;
+			children = (
+				8E3CA80B2B94D0BF00B9A1DB /* SequreSDKTests.swift */,
+			);
+			path = SequreSDKTests;
+			sourceTree = "<group>";
+		};
+		9697CF6B12B9499C0C4CE8D2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				291C34DAD172DE877B437836 /* Pods-SequreSDK.debug.xcconfig */,
+				760804771CBAE80C655B6F7C /* Pods-SequreSDK.release.xcconfig */,
+				668ECC91BE516C25F5BEEC5F /* Pods-SequreSDK-SequreSDKTests.debug.xcconfig */,
+				99F9DC0C7C61C73B28D1CE80 /* Pods-SequreSDK-SequreSDKTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		C5A62BC49DB36FB3D278E9C8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8E8DDDBC2B9627FA0064ED29 /* Pods_SequreSDK.framework */,
+				874FEF8ADD1129CC7B0F718F /* Pods_SequreSDK.framework */,
+				D705954F8C04DAA20BF52F77 /* Pods_SequreSDK_SequreSDKTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		8E3CA7F72B94D0BF00B9A1DB /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8E3CA80D2B94D0BF00B9A1DB /* SequreSDK.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		8E3CA7FB2B94D0BF00B9A1DB /* SequreSDK */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8E3CA8102B94D0BF00B9A1DB /* Build configuration list for PBXNativeTarget "SequreSDK" */;
+			buildPhases = (
+				A770CE2563F70FC7F67BF806 /* [CP] Check Pods Manifest.lock */,
+				8E3CA7F72B94D0BF00B9A1DB /* Headers */,
+				8E3CA7F82B94D0BF00B9A1DB /* Sources */,
+				8E3CA7F92B94D0BF00B9A1DB /* Frameworks */,
+				8E3CA7FA2B94D0BF00B9A1DB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SequreSDK;
+			productName = SequreSDK;
+			productReference = 8E3CA7FC2B94D0BF00B9A1DB /* SequreSDK.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		8E3CA8052B94D0BF00B9A1DB /* SequreSDKTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8E3CA8132B94D0BF00B9A1DB /* Build configuration list for PBXNativeTarget "SequreSDKTests" */;
+			buildPhases = (
+				572C739FF87A1F8C62B95D69 /* [CP] Check Pods Manifest.lock */,
+				8E3CA8022B94D0BF00B9A1DB /* Sources */,
+				8E3CA8032B94D0BF00B9A1DB /* Frameworks */,
+				8E3CA8042B94D0BF00B9A1DB /* Resources */,
+				5A16DEC3BC7201023670C2CB /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8E3CA8092B94D0BF00B9A1DB /* PBXTargetDependency */,
+			);
+			name = SequreSDKTests;
+			productName = SequreSDKTests;
+			productReference = 8E3CA8062B94D0BF00B9A1DB /* SequreSDKTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8E3CA7F32B94D0BF00B9A1DB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1520;
+				LastUpgradeCheck = 1520;
+				TargetAttributes = {
+					8E3CA7FB2B94D0BF00B9A1DB = {
+						CreatedOnToolsVersion = 15.2;
+					};
+					8E3CA8052B94D0BF00B9A1DB = {
+						CreatedOnToolsVersion = 15.2;
+					};
+				};
+			};
+			buildConfigurationList = 8E3CA7F62B94D0BF00B9A1DB /* Build configuration list for PBXProject "SequreSDK" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 8E3CA7F22B94D0BF00B9A1DB;
+			productRefGroup = 8E3CA7FD2B94D0BF00B9A1DB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8E3CA7FB2B94D0BF00B9A1DB /* SequreSDK */,
+				8E3CA8052B94D0BF00B9A1DB /* SequreSDKTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8E3CA7FA2B94D0BF00B9A1DB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8E8DDDBB2B96266A0064ED29 /* Assets.xcassets in Resources */,
+				8E8DDDCF2B9630960064ED29 /* tflite in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8E3CA8042B94D0BF00B9A1DB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		572C739FF87A1F8C62B95D69 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SequreSDK-SequreSDKTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5A16DEC3BC7201023670C2CB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SequreSDK-SequreSDKTests/Pods-SequreSDK-SequreSDKTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SequreSDK-SequreSDKTests/Pods-SequreSDK-SequreSDKTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SequreSDK-SequreSDKTests/Pods-SequreSDK-SequreSDKTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A770CE2563F70FC7F67BF806 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SequreSDK-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8E3CA7F82B94D0BF00B9A1DB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8E8DDDCD2B9630080064ED29 /* ObjectDetectionHelper.swift in Sources */,
+				8E8DDDC32B9629740064ED29 /* Assets.xcassets in Sources */,
+				8E3CA83B2B9559E600B9A1DB /* SequreScannerView.swift in Sources */,
+				8E3CA83A2B9559E600B9A1DB /* SequreCameraView.swift in Sources */,
+				8E3CA83D2B9559E600B9A1DB /* SequreApi.swift in Sources */,
+				8E3CA83E2B9559E600B9A1DB /* SequreResult.swift in Sources */,
+				8E3CA8012B94D0BF00B9A1DB /* SequreSDK.docc in Sources */,
+				8E8DDDC92B962CD00064ED29 /* ColorExtension.swift in Sources */,
+				8E3CA83C2B9559E600B9A1DB /* SequreCameraService.swift in Sources */,
+				8E8DDDCB2B962FED0064ED29 /* ClassificationHelper.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8E3CA8022B94D0BF00B9A1DB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8E3CA80C2B94D0BF00B9A1DB /* SequreSDKTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8E3CA8092B94D0BF00B9A1DB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8E3CA7FB2B94D0BF00B9A1DB /* SequreSDK */;
+			targetProxy = 8E3CA8082B94D0BF00B9A1DB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		8E3CA80E2B94D0BF00B9A1DB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		8E3CA80F2B94D0BF00B9A1DB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		8E3CA8112B94D0BF00B9A1DB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 291C34DAD172DE877B437836 /* Pods-SequreSDK.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_ASSET_PATHS = "SequreSDK/TFLite SequreSDK/Assets.xcassets";
+				DEVELOPMENT_TEAM = TXK7X2JZ9T;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = (
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				PRODUCT_BUNDLE_IDENTIFIER = id.sequre.SequreSDK;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = auto;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8E3CA8122B94D0BF00B9A1DB /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 760804771CBAE80C655B6F7C /* Pods-SequreSDK.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_ASSET_PATHS = "SequreSDK/TFLite SequreSDK/Assets.xcassets";
+				DEVELOPMENT_TEAM = TXK7X2JZ9T;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = (
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				PRODUCT_BUNDLE_IDENTIFIER = id.sequre.SequreSDK;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = auto;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		8E3CA8142B94D0BF00B9A1DB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 668ECC91BE516C25F5BEEC5F /* Pods-SequreSDK-SequreSDKTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = TXK7X2JZ9T;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				MACOSX_DEPLOYMENT_TARGET = 14.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = id.sequre.SequreSDKTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8E3CA8152B94D0BF00B9A1DB /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 99F9DC0C7C61C73B28D1CE80 /* Pods-SequreSDK-SequreSDKTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = TXK7X2JZ9T;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				MACOSX_DEPLOYMENT_TARGET = 14.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = id.sequre.SequreSDKTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8E3CA7F62B94D0BF00B9A1DB /* Build configuration list for PBXProject "SequreSDK" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8E3CA80E2B94D0BF00B9A1DB /* Debug */,
+				8E3CA80F2B94D0BF00B9A1DB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8E3CA8102B94D0BF00B9A1DB /* Build configuration list for PBXNativeTarget "SequreSDK" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8E3CA8112B94D0BF00B9A1DB /* Debug */,
+				8E3CA8122B94D0BF00B9A1DB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8E3CA8132B94D0BF00B9A1DB /* Build configuration list for PBXNativeTarget "SequreSDKTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8E3CA8142B94D0BF00B9A1DB /* Debug */,
+				8E3CA8152B94D0BF00B9A1DB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8E3CA7F32B94D0BF00B9A1DB /* Project object */;
+}
