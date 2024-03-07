@@ -43,12 +43,18 @@ struct SequreCameraView: UIViewControllerRepresentable {
         
     }
     
+    struct QrcodeStatus {
+        var status: String
+        var timestamp: TimeInterval
+    }
+    
     class Coordinator: NSObject, AVCapturePhotoCaptureDelegate, AVCaptureVideoDataOutputSampleBufferDelegate, AVCaptureMetadataOutputObjectsDelegate {
         let parent: SequreCameraView
         private var didFinishProcessingPhoto: (SequreResult) -> ()
         private var onEvent: (Color, String, String) -> ()
         private var processing: Bool = false
         private var distances = [CGFloat]()
+        private var statuses = [String: QrcodeStatus]()
         private var qrcode: String = ""
         
         private var x = CGFloat.zero, y = CGFloat.zero
@@ -89,7 +95,41 @@ struct SequreCameraView: UIViewControllerRepresentable {
                 if stringValue.uppercased().prefix(15) != "HTTP://QTRU.ST/" {
                     var result = SequreResult()
                     result.qr = stringValue
+                    result.label = "fake_qr"
+                    result.genuine = false
                     self.didFinishProcessingPhoto(result)
+                    return
+                }
+                // check qrcode
+                var status = statuses[self.qrcode]
+                if (status == nil || NSDate().timeIntervalSince1970 - status!.timestamp > 5 * 60) {
+                    statuses[self.qrcode] = QrcodeStatus(status: "", timestamp: NSDate().timeIntervalSince1970)
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0) {
+                        API.checkQr(qrcode: self.qrcode) { response in
+                            print("response: \(response)")
+                            var active = "Inactive"
+                            if response.status == "success" && response.data != nil {
+                                active = (response.data?.status)!
+                            }
+                            self.statuses[self.qrcode] = QrcodeStatus(status: active, timestamp: NSDate().timeIntervalSince1970)
+                            if (active != "Active") {
+                                var result = SequreResult()
+                                result.qr = stringValue
+                                result.label = "inactive"
+                                result.genuine = false
+                                self.didFinishProcessingPhoto(result)
+                            }
+                        }
+                    }
+                    
+                } else {
+                    if (status!.status != "" && status!.status != "Active") {
+                        var result = SequreResult()
+                        result.qr = stringValue
+                        result.label = "inactive"
+                        result.genuine = false
+                        self.didFinishProcessingPhoto(result)
+                    }
                 }
             }
         }
@@ -97,7 +137,7 @@ struct SequreCameraView: UIViewControllerRepresentable {
         func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
             DispatchQueue.global(qos: .background).async { [self] in
                 self.parent.cameraService.stop()
-                NSLog("photoOutput")
+//                NSLog("photoOutput")
                 var result = SequreResult()
                 result.error = error
                 result.image = photo.cgImageRepresentation()
@@ -124,7 +164,7 @@ struct SequreCameraView: UIViewControllerRepresentable {
                     self.processing = false
                     return
                 }
-                NSLog("objectDetection: highres")
+//                NSLog("objectDetection: highres")
                 if objectResults.detections.count > 0 {
                     let detection = objectResults.detections[0]
                     let cropped = image.cropping(to: detection.boundingBox)
@@ -141,7 +181,7 @@ struct SequreCameraView: UIViewControllerRepresentable {
                     }
                     image = (UIImage(cgImage: image).box(bound:detection.boundingBox, color: UIColor.red)?.cgImage)!
                     if classificationResults.classifications.categories.count == 0 {
-                        NSLog("objectDetection: not found")
+//                        NSLog("objectDetection: not found")
                         self.didFinishProcessingPhoto(result)
                         self.processing = false
                         return
@@ -154,7 +194,7 @@ struct SequreCameraView: UIViewControllerRepresentable {
                         genuine = true
                     }
 //                    UIImageWriteToSavedPhotosAlbum(UIImage(cgImage: image),nil,nil,nil)
-                    NSLog("objectDetection: \(category.score)")
+//                    NSLog("objectDetection: \(category.score)")
                     result.genuine = genuine!
                     result.label = category.label!
                     result.score = category.score
@@ -201,10 +241,10 @@ struct SequreCameraView: UIViewControllerRepresentable {
                     }
                     let screenSize: CGRect = UIScreen.main.bounds
                     self.parent.cameraService.focus(point: CGPoint(x: screenSize.width / 2, y: screenSize.height / 2))
-                    var moveCloser = 0.6
-                    if self.parent.cameraService.isIphoneLarge() {
-                        moveCloser = 0.7
-                    }
+                    var moveCloser = 0.4
+//                    if self.parent.cameraService.isIphoneLarge() {
+//                        moveCloser = 0.7
+//                    }
                     var moveFuther = 0.8
                     
                     let previewSize = CGRect(x: 0, y: 0, width: CVPixelBufferGetHeight(pixelBuffer), height: CVPixelBufferGetWidth(pixelBuffer))
@@ -219,15 +259,16 @@ struct SequreCameraView: UIViewControllerRepresentable {
                     var debug = "image: (\(CVPixelBufferGetHeight(pixelBuffer)),\(CVPixelBufferGetWidth(pixelBuffer))) boundingBox: (\(Int(boundingBox.width)),\(Int(boundingBox.height)))"
                     self.onEvent(Color.white, "QR found", debug)
 
-                    if !(boundingBox.minX >= left && boundingBox.maxX <= left + width &&
-                         boundingBox.minY >= top && boundingBox.maxY <= top + height) {
-                        self.onEvent(Color.white, "Place qr inside frame", debug)
-                        self.processing = false
-                    } else {
-                        let percentage = boundingBox.width / width
+//                    if !(boundingBox.minX >= left && boundingBox.maxX <= left + width &&
+//                         boundingBox.minY >= top && boundingBox.maxY <= top + height) {
+//                        self.onEvent(Color.white, "Place qr inside frame", debug)
+//                        self.processing = false
+//                    } else {
+//                        let percentage = boundingBox.width / width
+                    let percentage = boundingBox.width / previewSize.width
                         debug = "image: (\(CVPixelBufferGetHeight(pixelBuffer)),\(CVPixelBufferGetWidth(pixelBuffer))) boundingBox: (\(Int(boundingBox.width)),\(Int(boundingBox.height))) percentage: \(percentage)"
-                        NSLog(debug)
-                        
+//                        NSLog(debug)
+//                        print("percentage: \(percentage) moveCloser: \(moveCloser) ")
                         if percentage < moveCloser {
                             self.onEvent(Color.white, "Move Closer", debug)
                             self.processing = false
@@ -254,32 +295,32 @@ struct SequreCameraView: UIViewControllerRepresentable {
                                     total += distance
                                 }
                                 let average = total / CGFloat(length)
-                                NSLog("average: \(average)")
+//                                NSLog("average: \(average)")
                                 debug = "image: (\(CVPixelBufferGetHeight(pixelBuffer)),\(CVPixelBufferGetWidth(pixelBuffer))) boundingBox: (\(Int(detection.boundingBox.width)),\(Int(detection.boundingBox.height))) percentage: \(percentage) average: \(average)"
                                 self.onEvent(Color.green, "Hold Steady", debug)
                                 
                                 if  average <= max {
-                                    NSLog("capturePhoto")
+//                                    NSLog("capturePhoto")
                                     DispatchQueue.main.asyncAfter(deadline: .now() + 0) {
                                         self.parent.cameraService.capturePhoto()
 //                                        self.processing = false
                                     }
                                 } else {
-                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0) {
                                         self.processing = false
                                     }
                                 }
                             } else {
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0) {
                                     self.processing = false
                                 }
                             }
                             self.x = boundingBox.minX
                             self.y = boundingBox.minY
                         }
-                    }
+//                    }
                 } else {
-                    self.onEvent(Color.gray, "Find QR", "")
+                    self.onEvent(Color.gray, "Find QR or\nAdjust distance camera\naround 10 cm", "")
                     self.processing = false
                 }
             }

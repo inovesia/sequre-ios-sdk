@@ -30,25 +30,24 @@ public struct SequreScannerView: View {
                     let screenSize = geometry.size
                     let height = screenSize.width / (3 / 4)
                     let margin = (screenSize.height - height) / 2
-                    let result = SequreResult()
                     SequreCameraView(cameraService: cameraService) { result in
                         if let error = result.error {
                             print(error.localizedDescription)
                             return
                         }
                         cameraService.stop()
+                        self.result.qr = result.qr
+                        self.result.score = result.score
+                        self.result.label = result.label
                         if let data = result.image {
 //                            self.capturedImage = UIImage(cgImage: data)
 //                            if let image = result.image {
 //                                self.labelImage = UIImage(cgImage: image)
 //                            }
-                            self.result.qr = result.qr
-                            self.result.genuine = result.genuine
-                            self.result.score = result.score
                             self.presentationMode.wrappedValue.dismiss()
                             //                            NSLog("self.qrcode: \(self.qrcode)");
                             if result.genuine ?? false {
-                                self.result.label = "original"
+//                                self.result.label = "original"
 //                                API.scanQr(parameters: ["qrcode": self.qrcode ?? "", "score": self.score, "scanResult": result]) { response in
 //                                    NSLog("response: \(response)")
 //                                    self.data = response
@@ -63,15 +62,14 @@ public struct SequreScannerView: View {
 //                                    contentView.load()
 //                                }
                             }
+                            self.result.genuine = result.genuine
                         } else {
-                            print("No image found")
-                            self.result.label = "Fake"
+//                            print("No image found")
                             self.result.genuine = false
-                            self.result.score = 0.0001
                             self.presentationMode.wrappedValue.dismiss()
                         }
                     } onEvent: { color, message, debug in
-                        NSLog("onEvent: \(message)")
+//                        NSLog("onEvent: \(message)")
                         onEventColor = color
                         onEventMessage = message
                         onEventDebug = debug
@@ -91,17 +89,17 @@ public struct SequreScannerView: View {
                         let horizontal = screenSize.width - ((screenSize.width - width) / 2)
                         Group {
                             Rectangle()
-                                .fill(Color("clr_preview_background"))
+                                .fill(Color.clr_preview_background)
                                 .padding(.bottom, vertical)
                             Rectangle()
-                                .fill(Color("clr_preview_background"))
+                                .fill(Color.clr_preview_background)
                                 .padding(.top, vertical)
                             Rectangle()
-                                .fill(Color("clr_preview_background"))
+                                .fill(Color.clr_preview_background)
                                 .padding(.leading, horizontal)
                                 .padding(.vertical, vertical - height + geometry.safeAreaInsets.bottom)
                             Rectangle()
-                                .fill(Color("clr_preview_background"))
+                                .fill(Color.clr_preview_background)
                                 .padding(.trailing, horizontal)
                                 .padding(.vertical, vertical - height + geometry.safeAreaInsets.bottom)
                         }
@@ -165,10 +163,22 @@ public struct SequreScannerView: View {
                     .font(.system(size: 12))
                     .foregroundColor(.white)
                 Spacer()
-                Text(onEventMessage)
-                    .font(.system(size: 24, weight: .bold))
-                    .foregroundColor(onEventColor)
-                    .padding(.bottom, 70)
+            }
+            if (onEventMessage != "") {
+                VStack {
+                    Spacer()
+                    HStack {
+                        Text(onEventMessage)
+                            .font(.system(size: 24, weight: .bold))
+                        //                    .foregroundColor(onEventColor)
+                            .multilineTextAlignment(.center)
+                            .foregroundColor(.white)
+                            .padding()
+                    }
+                    .background(Color.clr_orange)
+                    .cornerRadius(20)
+                    Spacer()
+                }
             }
             VStack {
                 HStack {
@@ -196,7 +206,7 @@ public struct SequreScannerView: View {
                 Spacer()
             }
         }
-        .background(Color("clr_preview_background"))
+        .background(Color.clr_preview_background)
         .onAppear() {
             print("onAppear")
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {

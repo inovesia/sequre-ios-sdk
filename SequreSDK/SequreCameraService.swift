@@ -120,7 +120,7 @@ class SequreCameraService {
     func focus(point: CGPoint) {
         DispatchQueue.global(qos: .background).async {
             if let device = self.device {
-                NSLog("focus: \(point)")
+//                NSLog("focus: \(point)")
                 try? device.lockForConfiguration()
                 device.focusPointOfInterest = point
                 device.unlockForConfiguration()

@@ -15,6 +15,9 @@ public extension Color {
     static var clr_black2: Color {
         Color("clr_black2", bundle: Bundle(for: LocalColor.self))
     }
+    static var clr_orange: Color {
+        Color("clr_orange", bundle: Bundle(for: LocalColor.self))
+    }
     static var clr_preview_background: Color {
         Color("clr_preview_background", bundle: Bundle(for: LocalColor.self))
     }

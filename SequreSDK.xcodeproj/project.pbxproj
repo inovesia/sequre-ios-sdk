@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		107B847C9B417E3E73F7F34E /* Pods_SequreSDK_SequreSDKTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D705954F8C04DAA20BF52F77 /* Pods_SequreSDK_SequreSDKTests.framework */; };
-		8E3CA8012B94D0BF00B9A1DB /* SequreSDK.docc in Sources */ = {isa = PBXBuildFile; fileRef = 8E3CA8002B94D0BF00B9A1DB /* SequreSDK.docc */; };
 		8E3CA8072B94D0BF00B9A1DB /* SequreSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E3CA7FC2B94D0BF00B9A1DB /* SequreSDK.framework */; };
 		8E3CA80C2B94D0BF00B9A1DB /* SequreSDKTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3CA80B2B94D0BF00B9A1DB /* SequreSDKTests.swift */; };
 		8E3CA80D2B94D0BF00B9A1DB /* SequreSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 8E3CA7FF2B94D0BF00B9A1DB /* SequreSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -17,12 +16,12 @@
 		8E3CA83C2B9559E600B9A1DB /* SequreCameraService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3CA8372B9559E500B9A1DB /* SequreCameraService.swift */; };
 		8E3CA83D2B9559E600B9A1DB /* SequreApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3CA8382B9559E500B9A1DB /* SequreApi.swift */; };
 		8E3CA83E2B9559E600B9A1DB /* SequreResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3CA8392B9559E500B9A1DB /* SequreResult.swift */; };
-		8E8DDDBB2B96266A0064ED29 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E8DDDBA2B96266A0064ED29 /* Assets.xcassets */; };
-		8E8DDDC32B9629740064ED29 /* Assets.xcassets in Sources */ = {isa = PBXBuildFile; fileRef = 8E8DDDBA2B96266A0064ED29 /* Assets.xcassets */; };
 		8E8DDDC92B962CD00064ED29 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8DDDC82B962CD00064ED29 /* ColorExtension.swift */; };
-		8E8DDDCB2B962FED0064ED29 /* ClassificationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8DDDCA2B962FEB0064ED29 /* ClassificationHelper.swift */; };
 		8E8DDDCD2B9630080064ED29 /* ObjectDetectionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8DDDCC2B9630080064ED29 /* ObjectDetectionHelper.swift */; };
 		8E8DDDCF2B9630960064ED29 /* tflite in Resources */ = {isa = PBXBuildFile; fileRef = 8E8DDDCE2B9630960064ED29 /* tflite */; };
+		8E8DDDD42B96D1810064ED29 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E8DDDD32B96D1800064ED29 /* Assets.xcassets */; };
+		8E8DDDD82B9771DB0064ED29 /* ClassificationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8DDDCA2B962FEB0064ED29 /* ClassificationHelper.swift */; };
+		8E8DDDDB2B97722D0064ED29 /* CheckQr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8DDDDA2B9772130064ED29 /* CheckQr.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,7 +41,6 @@
 		874FEF8ADD1129CC7B0F718F /* Pods_SequreSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SequreSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E3CA7FC2B94D0BF00B9A1DB /* SequreSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SequreSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E3CA7FF2B94D0BF00B9A1DB /* SequreSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SequreSDK.h; sourceTree = "<group>"; };
-		8E3CA8002B94D0BF00B9A1DB /* SequreSDK.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = SequreSDK.docc; sourceTree = "<group>"; };
 		8E3CA8062B94D0BF00B9A1DB /* SequreSDKTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SequreSDKTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E3CA80B2B94D0BF00B9A1DB /* SequreSDKTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SequreSDKTests.swift; sourceTree = "<group>"; };
 		8E3CA8352B9559E500B9A1DB /* SequreCameraView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequreCameraView.swift; sourceTree = "<group>"; };
@@ -50,12 +48,15 @@
 		8E3CA8372B9559E500B9A1DB /* SequreCameraService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequreCameraService.swift; sourceTree = "<group>"; };
 		8E3CA8382B9559E500B9A1DB /* SequreApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequreApi.swift; sourceTree = "<group>"; };
 		8E3CA8392B9559E500B9A1DB /* SequreResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequreResult.swift; sourceTree = "<group>"; };
-		8E8DDDBA2B96266A0064ED29 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8E8DDDBC2B9627FA0064ED29 /* Pods_SequreSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_SequreSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E8DDDC82B962CD00064ED29 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		8E8DDDCA2B962FEB0064ED29 /* ClassificationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassificationHelper.swift; sourceTree = "<group>"; };
 		8E8DDDCC2B9630080064ED29 /* ObjectDetectionHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectDetectionHelper.swift; sourceTree = "<group>"; };
 		8E8DDDCE2B9630960064ED29 /* tflite */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tflite; sourceTree = "<group>"; };
+		8E8DDDD22B96CD550064ED29 /* SequreSDK.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = SequreSDK.docc; sourceTree = "<group>"; };
+		8E8DDDD32B96D1800064ED29 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8E8DDDD72B97703C0064ED29 /* SequreSDK.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = SequreSDK.md; sourceTree = "<group>"; };
+		8E8DDDDA2B9772130064ED29 /* CheckQr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckQr.swift; sourceTree = "<group>"; };
 		99F9DC0C7C61C73B28D1CE80 /* Pods-SequreSDK-SequreSDKTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SequreSDK-SequreSDKTests.release.xcconfig"; path = "Target Support Files/Pods-SequreSDK-SequreSDKTests/Pods-SequreSDK-SequreSDKTests.release.xcconfig"; sourceTree = "<group>"; };
 		D705954F8C04DAA20BF52F77 /* Pods_SequreSDK_SequreSDKTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SequreSDK_SequreSDKTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -103,8 +104,14 @@
 		8E3CA7FE2B94D0BF00B9A1DB /* SequreSDK */ = {
 			isa = PBXGroup;
 			children = (
+				8E8DDDD32B96D1800064ED29 /* Assets.xcassets */,
 				8E8DDDCE2B9630960064ED29 /* tflite */,
+				8E8DDDD62B9770350064ED29 /* Resources */,
+				8E8DDDD72B97703C0064ED29 /* SequreSDK.md */,
+				8E8DDDD22B96CD550064ED29 /* SequreSDK.docc */,
+				8E8DDDD92B9772130064ED29 /* model */,
 				8E8DDDCA2B962FEB0064ED29 /* ClassificationHelper.swift */,
+				8E8DDDC82B962CD00064ED29 /* ColorExtension.swift */,
 				8E8DDDCC2B9630080064ED29 /* ObjectDetectionHelper.swift */,
 				8E3CA8382B9559E500B9A1DB /* SequreApi.swift */,
 				8E3CA8372B9559E500B9A1DB /* SequreCameraService.swift */,
@@ -112,9 +119,6 @@
 				8E3CA8392B9559E500B9A1DB /* SequreResult.swift */,
 				8E3CA8362B9559E500B9A1DB /* SequreScannerView.swift */,
 				8E3CA7FF2B94D0BF00B9A1DB /* SequreSDK.h */,
-				8E3CA8002B94D0BF00B9A1DB /* SequreSDK.docc */,
-				8E8DDDBA2B96266A0064ED29 /* Assets.xcassets */,
-				8E8DDDC82B962CD00064ED29 /* ColorExtension.swift */,
 			);
 			path = SequreSDK;
 			sourceTree = "<group>";
@@ -125,6 +129,21 @@
 				8E3CA80B2B94D0BF00B9A1DB /* SequreSDKTests.swift */,
 			);
 			path = SequreSDKTests;
+			sourceTree = "<group>";
+		};
+		8E8DDDD62B9770350064ED29 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		8E8DDDD92B9772130064ED29 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				8E8DDDDA2B9772130064ED29 /* CheckQr.swift */,
+			);
+			path = model;
 			sourceTree = "<group>";
 		};
 		9697CF6B12B9499C0C4CE8D2 /* Pods */ = {
@@ -243,7 +262,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8E8DDDBB2B96266A0064ED29 /* Assets.xcassets in Resources */,
+				8E8DDDD42B96D1810064ED29 /* Assets.xcassets in Resources */,
 				8E8DDDCF2B9630960064ED29 /* tflite in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -326,16 +345,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E8DDDDB2B97722D0064ED29 /* CheckQr.swift in Sources */,
+				8E8DDDD82B9771DB0064ED29 /* ClassificationHelper.swift in Sources */,
 				8E8DDDCD2B9630080064ED29 /* ObjectDetectionHelper.swift in Sources */,
-				8E8DDDC32B9629740064ED29 /* Assets.xcassets in Sources */,
 				8E3CA83B2B9559E600B9A1DB /* SequreScannerView.swift in Sources */,
 				8E3CA83A2B9559E600B9A1DB /* SequreCameraView.swift in Sources */,
 				8E3CA83D2B9559E600B9A1DB /* SequreApi.swift in Sources */,
 				8E3CA83E2B9559E600B9A1DB /* SequreResult.swift in Sources */,
-				8E3CA8012B94D0BF00B9A1DB /* SequreSDK.docc in Sources */,
 				8E8DDDC92B962CD00064ED29 /* ColorExtension.swift in Sources */,
 				8E3CA83C2B9559E600B9A1DB /* SequreCameraService.swift in Sources */,
-				8E8DDDCB2B962FED0064ED29 /* ClassificationHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
