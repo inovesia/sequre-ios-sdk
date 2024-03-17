@@ -169,7 +169,7 @@ struct SequreCameraView: UIViewControllerRepresentable {
                     let detection = objectResults.detections[0]
                     let cropped = image.cropping(to: detection.boundingBox)
                     let scaled = UIImage(cgImage: cropped!).scale()?.cgImage
-//                    UIImageWriteToSavedPhotosAlbum(UIImage(cgImage: scaled!),nil,nil,nil)
+                    UIImageWriteToSavedPhotosAlbum(UIImage(cgImage: scaled!),nil,nil,nil)
 
                     // classification
                     pixelBuffer = self.pixelBufferFromCGImage(image: scaled!)
@@ -193,7 +193,7 @@ struct SequreCameraView: UIViewControllerRepresentable {
                         image = (UIImage(cgImage: image).box(bound:detection.boundingBox, color: UIColor.green)?.cgImage)!
                         genuine = true
                     }
-//                    UIImageWriteToSavedPhotosAlbum(UIImage(cgImage: image),nil,nil,nil)
+                    UIImageWriteToSavedPhotosAlbum(UIImage(cgImage: image),nil,nil,nil)
 //                    NSLog("objectDetection: \(category.score)")
                     result.genuine = genuine!
                     result.label = category.label!
