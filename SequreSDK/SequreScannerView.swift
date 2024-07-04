@@ -189,7 +189,7 @@ public struct SequreScannerView: View {
                             .foregroundColor(.white)
                             .padding()
                     }
-                    .background(Color.clr_orange)
+                    .background(Color("clr_orange"))
                     .cornerRadius(20)
                     Spacer()
                 }
