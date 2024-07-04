@@ -279,7 +279,7 @@ struct SequreCameraView: UIViewControllerRepresentable {
                         }
                     }
                 } else {
-                    self.onEvent(Color.gray, "Find QR", "")
+                    self.onEvent(Color.gray, "Find QR or Adjust distance camera around 10 cm", "")
                     self.processing = false
                 }
             }

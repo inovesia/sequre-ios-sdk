@@ -31,6 +31,7 @@ class SequreCameraService {
     private func checkPermissions(completion: @escaping (Error?) -> ()) {
         switch AVCaptureDevice.authorizationStatus(for: .video) {
         case .notDetermined:
+            print("CHECK A")
             AVCaptureDevice.requestAccess(for: .video) { granted in
                 guard granted else {
                     return
@@ -40,11 +41,16 @@ class SequreCameraService {
                 }
             }
         case .restricted:
+            print("CHECK B")
             break
         case .denied:
+            print("CHECK C")
             break
         case .authorized:
-            setupCamera(completion: completion)
+            print("CHECK D")
+            DispatchQueue.main.async {
+                self.setupCamera(completion: completion)
+            }
         @unknown default:
             break
         }
@@ -147,7 +153,10 @@ class SequreCameraService {
     
     func stop() {
         DispatchQueue.global(qos: .background).async {
-            self.session!.stopRunning()
+            if let sess = self.session {
+                sess.stopRunning()
+            }
+        
         }
     }
     

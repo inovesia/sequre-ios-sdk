@@ -9,7 +9,16 @@ import Foundation
 import Alamofire
 
 class API: NSObject {
-    static let url = "https://smobile.sequre.id/api/consumer"
+    static let url = "https://smobile.sequre.id"
+    
+    static func checkQr(qrcode: String, onFinish: @escaping (CheckQrModel) -> Void) {
+        AF.request("\(url)/api/check-qr", method: .post, parameters: ["qrcode": qrcode]).responseDecodable(of: CheckQrModel.self) { response in
+            guard let response = response.value else {
+                return onFinish(CheckQrModel(status: "error", code: 500, data: nil))
+            }
+            return onFinish(response)
+        }
+    }
     
 //    static func login(username: String, password: String, onFinish: @escaping (LoginModel) -> Void) {
 //        AF.request("\(url)/login", method: .post, parameters: ["username": username, "password": password]).responseDecodable(of: LoginModel.self) { response in

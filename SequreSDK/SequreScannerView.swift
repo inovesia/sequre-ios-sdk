@@ -8,7 +8,8 @@
 import SwiftUI
 
 public struct SequreScannerView: View {
- 
+    @AppStorage("language")
+    private var language = LocalizationService.shared.language
     let cameraService = SequreCameraService()
     @Environment(\.presentationMode) private var presentationMode
     @Binding var result: SequreResult
@@ -17,7 +18,6 @@ public struct SequreScannerView: View {
     @State var onEventMessage: String = ""
     @State var onEventDebug: String = ""
     @State var zoomLevel: CGFloat = 4
-    
     public init(result: Binding<SequreResult>) {
         self._result = result
     }
@@ -71,9 +71,19 @@ public struct SequreScannerView: View {
                             self.presentationMode.wrappedValue.dismiss()
                         }
                     } onEvent: { color, message, debug in
-                        NSLog("onEvent: \(message)")
+//                        NSLog("onEvent: \(message)")
+                        
+                        var msg = message.localized(language)
+//                        if language == .indonesia {
+//                            if message == "Move Further" {
+//                                msg = "Jauhkan dari QR"
+//                            }
+//                            if message == "QR found" {
+//                                msg = "QR ditemukan"
+//                            }
+//                        }
                         onEventColor = color
-                        onEventMessage = message
+                        onEventMessage = msg
                         onEventDebug = debug
                     }
                     .padding(.top, margin)
@@ -157,18 +167,32 @@ public struct SequreScannerView: View {
             }
             
             VStack {
-                Text("Posisikan QR ke dalam Area")
+                Text("Adjust QR to the area".localized(language))
                     .font(.system(size: 18))
                     .foregroundColor(.white)
                     .padding(.top, 70)
-                Text("Scaning akan dimulai otomatis")
+                Text("Scanning will begin automatically".localized(language))
                     .font(.system(size: 12))
                     .foregroundColor(.white)
                 Spacer()
-                Text(onEventMessage)
-                    .font(.system(size: 24, weight: .bold))
-                    .foregroundColor(onEventColor)
-                    .padding(.bottom, 70)
+                let x = print("Scanning will begin automatically".localized(language))
+            }
+            if (onEventMessage != "") {
+                let x = print(onEventMessage.localized(language))
+                VStack {
+                    Spacer()
+                    HStack {
+                        Text(onEventMessage.localized(language))
+                            .font(.system(size: 24, weight: .bold))
+                        //                    .foregroundColor(onEventColor)
+                            .multilineTextAlignment(.center)
+                            .foregroundColor(.white)
+                            .padding()
+                    }
+                    .background(Color.clr_orange)
+                    .cornerRadius(20)
+                    Spacer()
+                }
             }
             VStack {
                 HStack {

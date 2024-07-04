@@ -1,0 +1,15 @@
+/* 
+  Localizable.strings
+  SequreSDK
+
+  Created by Bayu Aslama on 02/07/24.
+  
+*/
+
+"Adjust QR to the area" = "Posisikan QR ke dalam Area";
+"Scanning will begin automatically" = "Scanning akan dimulai secara otomatis";
+"Move Closer" = "Dekatkan ke QR";
+"Hold Steady" = "Pertahankan Posisi";
+"Find QR or Adjust distance camera around 10 cm" = "Temukan QR atau Sesuaikan jarak kamera sekitar 10 cm";
+"Move Further" = "Jauhkan dari QR";
+"QR found" = "QR ditemukan" ;
