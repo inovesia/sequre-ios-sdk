@@ -99,19 +99,19 @@ public struct SequreScannerView: View {
                         let horizontal = screenSize.width - ((screenSize.width - width) / 2)
                         Group {
                             Rectangle()
-                                .fill(Color.clr_preview_background)
-                                .padding(.bottom, vertical)
+                                .fill(Color("clr_preview_background"))
+                                .padding(.bottom, vertical - statusBarHeight())
                             Rectangle()
-                                .fill(Color.clr_preview_background)
-                                .padding(.top, vertical)
+                                .fill(Color("clr_preview_background"))
+                                .padding(.top, vertical - statusBarHeight())
                             Rectangle()
                                 .fill(Color.clr_preview_background)
                                 .padding(.leading, horizontal)
-                                .padding(.vertical, vertical - height + geometry.safeAreaInsets.bottom)
+                                .padding(.vertical, vertical - height + geometry.safeAreaInsets.bottom + statusBarHeight())
                             Rectangle()
                                 .fill(Color.clr_preview_background)
                                 .padding(.trailing, horizontal)
-                                .padding(.vertical, vertical - height + geometry.safeAreaInsets.bottom)
+                                .padding(.vertical, vertical - height + geometry.safeAreaInsets.bottom + statusBarHeight())
                         }
                         ZStack {
                             HStack {
@@ -157,7 +157,7 @@ public struct SequreScannerView: View {
                                 }
                             }
                         }
-                        .padding(.vertical, vertical - height + geometry.safeAreaInsets.bottom - 3)
+                        .padding(.vertical, vertical - height + geometry.safeAreaInsets.bottom - 3 + statusBarHeight())
                         .padding(.horizontal, horizontal - width - 3)
                     }
                 }
@@ -168,7 +168,7 @@ public struct SequreScannerView: View {
                 Text("Adjust QR to the area".localized(language))
                     .font(.system(size: 18))
                     .foregroundColor(.white)
-                    .padding(.top, 70)
+                    .padding(.top, statusBarHeight()+60)
                 Text("Scanning will begin automatically".localized(language))
                     .font(.system(size: 12))
                     .foregroundColor(.white)
@@ -195,24 +195,27 @@ public struct SequreScannerView: View {
             VStack {
                 HStack {
                     HStack {
-                        Image(systemName: "chevron.left")
-                            .foregroundColor(Color.white)
-                            .padding()
-                            .onTapGesture {
-                                cameraService.stop()
-                                presentationMode.wrappedValue.dismiss()
-                            }
+                        Button(action: {
+                            cameraService.stop()
+                            presentationMode.wrappedValue.dismiss()
+                        }) {
+                            Image(systemName: "chevron.left")
+                                .foregroundColor(Color.white)
+                                .padding()
+                        }
+                        .buttonStyle(PlainButtonStyle())
                         Spacer()
-//                        Image(systemName: isTorchOn ? "bolt.fill" : "bolt.slash.fill")
-//                            .foregroundColor(Color.white)
-//                            .padding()
-//                            .onTapGesture {
-//                                isTorchOn.toggle()
-//                                UserDefaults.standard.set(isTorchOn, forKey: "torch")
-//                                cameraService.torch(isOn: isTorchOn)
-//                            }
+                        //                        Image(systemName: isTorchOn ? "bolt.fill" : "bolt.slash.fill")
+                        //                            .foregroundColor(Color.white)
+                        //                            .padding()
+                        //                            .onTapGesture {
+                        //                                isTorchOn.toggle()
+                        //                                UserDefaults.standard.set(isTorchOn, forKey: "torch")
+                        //                                cameraService.torch(isOn: isTorchOn)
+                        //                            }
                     }
                     .padding([.leading, .trailing])
+                    .padding(.top, statusBarHeight())
                 }
                 .background(Color.clr_black2)
                 Spacer()
@@ -236,4 +239,13 @@ public struct SequreScannerView: View {
         }
     }
     
+    func statusBarHeight() -> CGFloat {
+            guard let window = UIApplication.shared.connectedScenes
+                .filter({$0.activationState == .foregroundActive})
+                .compactMap({$0 as? UIWindowScene})
+                .first?.windows
+                .filter({$0.isKeyWindow}).first else { return 0 }
+            let statusBarFrame = window.windowScene?.statusBarManager?.statusBarFrame
+            return statusBarFrame?.height ?? 0
+        }
 }
