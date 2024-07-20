@@ -106,7 +106,7 @@ struct SequreCameraView: UIViewControllerRepresentable {
                     statuses[self.qrcode] = QrcodeStatus(status: "", timestamp: NSDate().timeIntervalSince1970)
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0) {
                         API.checkQr(qrcode: self.qrcode) { response in
-                            print("response: \(response)")
+//                            print("response: \(response)")
                             var active = "Inactive"
                             if response.status == "success" && response.data != nil {
                                 active = (response.data?.status)!
@@ -241,15 +241,15 @@ struct SequreCameraView: UIViewControllerRepresentable {
                     }
                     let screenSize: CGRect = UIScreen.main.bounds
                     self.parent.cameraService.focus(point: CGPoint(x: screenSize.width / 2, y: screenSize.height / 2))
-                    var moveCloser = 0.4
+                    var moveCloser = 0.5
 //                    if self.parent.cameraService.isIphoneLarge() {
 //                        moveCloser = 0.7
 //                    }
                     var moveFuther = 0.8
                     
                     let previewSize = CGRect(x: 0, y: 0, width: CVPixelBufferGetHeight(pixelBuffer), height: CVPixelBufferGetWidth(pixelBuffer))
-                    let ratio = 2.0 / 4.0
-                    let frame = 0.6
+                    let ratio = 1.0 / 2.0
+                    let frame = 0.8
                     let width = previewSize.width * frame
                     let height = width / ratio
                     let left = (previewSize.width - width) / 2
@@ -320,7 +320,7 @@ struct SequreCameraView: UIViewControllerRepresentable {
                         }
 //                    }
                 } else {
-                    self.onEvent(Color.gray, "Find QR or Adjust distance camera around 10 cm", "")
+//                    self.onEvent(Color.gray, "Find QR or Adjust distance camera around 10 cm", "")
                     self.processing = false
                 }
             }

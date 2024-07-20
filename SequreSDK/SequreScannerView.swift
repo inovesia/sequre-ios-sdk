@@ -12,14 +12,15 @@ public struct SequreScannerView: View {
     private var language = LocalizationService.shared.language
     let cameraService = SequreCameraService()
     @Environment(\.presentationMode) private var presentationMode
-    @Binding var result: SequreResult
     @State var isTorchOn: Bool = false
     @State var onEventColor: Color = Color.white
     @State var onEventMessage: String = ""
     @State var onEventDebug: String = ""
     @State var zoomLevel: CGFloat = 4
-    public init(result: Binding<SequreResult>) {
-        self._result = result
+    
+    var resultCallback: SequreResultCallback
+    public init(resultCallback: SequreResultCallback) {
+        self.resultCallback = resultCallback
     }
     
     
@@ -36,52 +37,28 @@ public struct SequreScannerView: View {
                             return
                         }
                         cameraService.stop()
-                        self.result.qr = result.qr
-                        self.result.score = result.score
-                        self.result.label = result.label
                         if let data = result.image {
 //                            self.capturedImage = UIImage(cgImage: data)
 //                            if let image = result.image {
 //                                self.labelImage = UIImage(cgImage: image)
 //                            }
-                            self.presentationMode.wrappedValue.dismiss()
                             //                            NSLog("self.qrcode: \(self.qrcode)");
                             if result.genuine ?? false {
 //                                self.result.label = "original"
-//                                API.scanQr(parameters: ["qrcode": self.qrcode ?? "", "score": self.score, "scanResult": result]) { response in
-//                                    NSLog("response: \(response)")
-//                                    self.data = response
-//                                    contentView.load()
-//                                }
                             } else {
                                 if (result.label == nil || result.label == "" ? "-" : result.label) == "-" {
-                                    self.result.label = "poor_image_quality"
+//                                    result.label = "poor_image_quality"
                                 }
-//                                API.scanLog(parameters: ["qrcode": self.qrcode ?? "", "score": self.score, "scanResult": result]) { response in
-//                                    NSLog("response: \(response)")
-//                                    contentView.load()
-//                                }
                             }
-                            self.result.genuine = result.genuine
+                            self.presentationMode.wrappedValue.dismiss()
                         } else {
-//                            print("No image found")
-                            self.result.genuine = false
+                            print("No image found")
                             self.presentationMode.wrappedValue.dismiss()
                         }
+                        resultCallback.onResult(result: result)
                     } onEvent: { color, message, debug in
-//                        NSLog("onEvent: \(message)")
-                        
-                        var msg = message.localized(language)
-//                        if language == .indonesia {
-//                            if message == "Move Further" {
-//                                msg = "Jauhkan dari QR"
-//                            }
-//                            if message == "QR found" {
-//                                msg = "QR ditemukan"
-//                            }
-//                        }
                         onEventColor = color
-                        onEventMessage = msg
+                        onEventMessage = message
                         onEventDebug = debug
                     }
                     .padding(.top, margin)
@@ -91,18 +68,18 @@ public struct SequreScannerView: View {
                 ZStack {
                     Group {
                         let screenSize = geometry.size
-                        let ratio = 2.0 / 4.0
-                        let percentage = 0.6
+                        let ratio = 1.0 / 2.0
+                        let percentage = 0.7
                         let width = screenSize.width * percentage
                         let height = width / ratio
                         let vertical = screenSize.height - ((screenSize.height - height) / 2)
                         let horizontal = screenSize.width - ((screenSize.width - width) / 2)
                         Group {
                             Rectangle()
-                                .fill(Color("clr_preview_background"))
+                                .fill(Color.clr_preview_background)
                                 .padding(.bottom, vertical - statusBarHeight())
                             Rectangle()
-                                .fill(Color("clr_preview_background"))
+                                .fill(Color.clr_preview_background)
                                 .padding(.top, vertical - statusBarHeight())
                             Rectangle()
                                 .fill(Color.clr_preview_background)
@@ -187,7 +164,7 @@ public struct SequreScannerView: View {
                             .foregroundColor(.white)
                             .padding()
                     }
-                    .background(Color("clr_orange"))
+                    .background(Color.clr_orange)
                     .cornerRadius(20)
                     Spacer()
                 }
@@ -222,21 +199,21 @@ public struct SequreScannerView: View {
             }
         }
         .background(Color.clr_preview_background)
-        .onAppear() {
-            print("onAppear")
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-//                if UserDefaults.standard.object(forKey: "torch") == nil {
-//                    UserDefaults.standard.set(true, forKey: "torch")
-//                }
-//                isTorchOn = UserDefaults.standard.bool(forKey: "torch")
-//                cameraService.torch(isOn: isTorchOn)
-//                zoomLevel = CGFloat(UserDefaults.standard.float(forKey: "zoom"));
-//                if zoomLevel < 1 {
-//                    zoomLevel = 1
-//                }
-//                cameraService.setZoom(level: 4)
-            }
-        }
+//        .onAppear() {
+//            print("onAppear")
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+////                if UserDefaults.standard.object(forKey: "torch") == nil {
+////                    UserDefaults.standard.set(true, forKey: "torch")
+////                }
+////                isTorchOn = UserDefaults.standard.bool(forKey: "torch")
+////                cameraService.torch(isOn: isTorchOn)
+////                zoomLevel = CGFloat(UserDefaults.standard.float(forKey: "zoom"));
+////                if zoomLevel < 1 {
+////                    zoomLevel = 1
+////                }
+////                cameraService.setZoom(level: 4)
+//            }
+//        }
     }
     
     func statusBarHeight() -> CGFloat {
