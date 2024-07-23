@@ -159,7 +159,9 @@ struct SequreCameraView: UIViewControllerRepresentable {
                 var pixelBuffer = self.pixelBufferFromCGImage(image: image)
                                 
                 // object detection
-                guard let objectResults = self.objectDetectionHelperV2?.detect(frame: pixelBuffer!) else {
+                guard let _objectDetectionHelperV2 = self.objectDetectionHelperV2 else { return }
+                
+                guard let objectResults = _objectDetectionHelperV2.detect(frame: pixelBuffer!) else {
                     self.didFinishProcessingPhoto(result)
                     self.processing = false
                     return
@@ -219,7 +221,9 @@ struct SequreCameraView: UIViewControllerRepresentable {
                     self.processing = false
                     return
                 }
-                let results = self.objectDetectionHelper?.detect(frame: pixelBuffer)
+                
+                guard let _objectDetectionHelper = self.objectDetectionHelper else { return }
+                let results = _objectDetectionHelper.detect(frame: pixelBuffer)
                 guard let displayResult = results else {
                     self.processing = false
                     return
