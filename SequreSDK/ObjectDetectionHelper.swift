@@ -30,7 +30,7 @@ class ObjectDetectionHelper: NSObject {
   // MARK: Private properties
 
   /// TensorFlow Lite `ObjectDetector` object for performing object detection using a given model.
-  private var detector: ObjectDetector
+  private var detector: ObjectDetector?
 
   private let colors = [
     UIColor.black,  // 0.0 white
@@ -101,10 +101,12 @@ class ObjectDetectionHelper: NSObject {
   func detect(frame pixelBuffer: CVPixelBuffer) -> Result? {
 
     guard let mlImage = MLImage(pixelBuffer: pixelBuffer) else { return nil }
+    guard let _detector = detector else { return nil }
+      
     // Run inference
     do {
       let startDate = Date()
-      let detectionResult = try detector.detect(mlImage: mlImage)
+      let detectionResult = try _detector.detect(mlImage: mlImage)
       let interval = Date().timeIntervalSince(startDate) * 1000
 
       // Returns the detection time and detections
