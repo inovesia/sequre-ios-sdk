@@ -31,6 +31,8 @@ public struct SequreScannerView: View {
                     let screenSize = geometry.size
                     let height = screenSize.width / (3 / 4)
                     let margin = (screenSize.height - height) / 2
+                    let navBarHeight = (48 + statusBarHeight()) / 2
+                    // Camera view
                     SequreCameraView(cameraService: cameraService) { result in
                         if let error = result.error {
                             print(error.localizedDescription)
@@ -61,8 +63,8 @@ public struct SequreScannerView: View {
                         onEventMessage = message
                         onEventDebug = debug
                     }
-                    .padding(.top, margin)
-                    .padding(.bottom, margin)
+                    .padding(.top, margin + navBarHeight)
+                    .padding(.bottom, margin - navBarHeight)
                 }
                 .edgesIgnoringSafeArea(.all)
                 ZStack {
@@ -74,22 +76,28 @@ public struct SequreScannerView: View {
                         let height = width / ratio
                         let vertical = screenSize.height - ((screenSize.height - height) / 2)
                         let horizontal = screenSize.width - ((screenSize.width - width) / 2)
+                        let navBarHeight = (48 + statusBarHeight()) / 2
+                        // Black transparent background views
                         Group {
                             Rectangle()
                                 .fill(Color.clr_preview_background)
-                                .padding(.bottom, vertical - statusBarHeight())
+                                .padding(.bottom, vertical - statusBarHeight() - navBarHeight)
                             Rectangle()
                                 .fill(Color.clr_preview_background)
-                                .padding(.top, vertical - statusBarHeight())
+                                .padding(.top, vertical - statusBarHeight() + navBarHeight)
                             Rectangle()
                                 .fill(Color.clr_preview_background)
                                 .padding(.leading, horizontal)
-                                .padding(.vertical, vertical - height + geometry.safeAreaInsets.bottom + statusBarHeight())
+                                .padding(.top, vertical - height + geometry.safeAreaInsets.bottom + statusBarHeight() + navBarHeight)
+                                .padding(.bottom, vertical - height + geometry.safeAreaInsets.bottom + statusBarHeight() - navBarHeight)
                             Rectangle()
                                 .fill(Color.clr_preview_background)
                                 .padding(.trailing, horizontal)
-                                .padding(.vertical, vertical - height + geometry.safeAreaInsets.bottom + statusBarHeight())
+                                .padding(.top, vertical - height + geometry.safeAreaInsets.bottom + statusBarHeight() + navBarHeight)
+                                .padding(.bottom, vertical - height + geometry.safeAreaInsets.bottom + statusBarHeight() - navBarHeight)
                         }
+                        
+                        // White frame views
                         ZStack {
                             HStack {
                                 VStack {
@@ -134,7 +142,8 @@ public struct SequreScannerView: View {
                                 }
                             }
                         }
-                        .padding(.vertical, vertical - height + geometry.safeAreaInsets.bottom - 3 + statusBarHeight())
+                        .padding(.top, vertical - height + geometry.safeAreaInsets.bottom - 3 + statusBarHeight() + navBarHeight)
+                        .padding(.bottom, vertical - height + geometry.safeAreaInsets.bottom - 3 + statusBarHeight() - navBarHeight)
                         .padding(.horizontal, horizontal - width - 3)
                     }
                 }
@@ -217,12 +226,12 @@ public struct SequreScannerView: View {
     }
     
     func statusBarHeight() -> CGFloat {
-            guard let window = UIApplication.shared.connectedScenes
-                .filter({$0.activationState == .foregroundActive})
-                .compactMap({$0 as? UIWindowScene})
-                .first?.windows
-                .filter({$0.isKeyWindow}).first else { return 0 }
-            let statusBarFrame = window.windowScene?.statusBarManager?.statusBarFrame
-            return statusBarFrame?.height ?? 0
-        }
+        guard let window = UIApplication.shared.connectedScenes
+            .filter({$0.activationState == .foregroundActive})
+            .compactMap({$0 as? UIWindowScene})
+            .first?.windows
+            .filter({$0.isKeyWindow}).first else { return 0 }
+        let statusBarFrame = window.windowScene?.statusBarManager?.statusBarFrame
+        return statusBarFrame?.height ?? 0
+    }
 }
