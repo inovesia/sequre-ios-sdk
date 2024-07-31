@@ -17,6 +17,7 @@ public struct SequreScannerView: View {
     @State var onEventMessage: String = ""
     @State var onEventDebug: String = ""
     @State var zoomLevel: CGFloat = 4
+    @State var cameraViewTopPos: CGFloat = 0
     
     var resultCallback: SequreResultCallback
     public init(resultCallback: SequreResultCallback) {
@@ -63,6 +64,9 @@ public struct SequreScannerView: View {
                         onEventMessage = message
                         onEventDebug = debug
                     }
+                    .onAppear(perform: {
+                        cameraViewTopPos = margin + navBarHeight
+                    })
                     .padding(.top, margin + navBarHeight)
                     .padding(.bottom, margin - navBarHeight)
                 }
@@ -154,7 +158,7 @@ public struct SequreScannerView: View {
                 Text("Adjust QR to the area".localized(language))
                     .font(.system(size: 18))
                     .foregroundColor(.white)
-                    .padding(.top, statusBarHeight()+60)
+                    .padding(.top, cameraViewTopPos - 37 - 10)
                 Text("Scanning will begin automatically".localized(language))
                     .font(.system(size: 12))
                     .foregroundColor(.white)
