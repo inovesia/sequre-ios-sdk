@@ -189,7 +189,7 @@ public struct SequreScannerView: View {
                             cameraService.stop()
                             presentationMode.wrappedValue.dismiss()
                         }) {
-                            Image(systemName: "chevron.left")
+                            Image("ic-back", bundle: Bundle(for: SequreCameraService.self))
                                 .foregroundColor(Color.white)
                                 .padding()
                         }
