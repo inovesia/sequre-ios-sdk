@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		1C023D126FE9708CC42B18B4 /* Pods_SequreSDK_SequreSDKTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47004C5F637271D227766759 /* Pods_SequreSDK_SequreSDKTests.framework */; };
+		2753E1D22C5BC1D50077C613 /* SequreEnvironmentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2753E1D12C5BC1D50077C613 /* SequreEnvironmentType.swift */; };
+		2753E1D42C5BC2150077C613 /* SequreConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2753E1D32C5BC2150077C613 /* SequreConfig.swift */; };
+		2753E1D82C5BC3180077C613 /* EnvironmentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2753E1D72C5BC3170077C613 /* EnvironmentManager.swift */; };
+		2753E1DA2C5BC5130077C613 /* SequreSDKConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2753E1D92C5BC5130077C613 /* SequreSDKConfiguration.swift */; };
 		4F7C8D782C368581009CBEF6 /* CheckQr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7C8D762C368581009CBEF6 /* CheckQr.swift */; };
 		4FC3ACCD2C33E78E00C9E74B /* LocalizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC3ACCC2C33E78E00C9E74B /* LocalizationService.swift */; };
 		4FC3ACCF2C33E82400C9E74B /* Strings+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC3ACCE2C33E82400C9E74B /* Strings+Localization.swift */; };
@@ -39,6 +43,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2753E1D12C5BC1D50077C613 /* SequreEnvironmentType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SequreEnvironmentType.swift; sourceTree = "<group>"; };
+		2753E1D32C5BC2150077C613 /* SequreConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SequreConfig.swift; sourceTree = "<group>"; };
+		2753E1D72C5BC3170077C613 /* EnvironmentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentManager.swift; sourceTree = "<group>"; };
+		2753E1D92C5BC5130077C613 /* SequreSDKConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SequreSDKConfiguration.swift; sourceTree = "<group>"; };
 		313EB5430AAEBC7578907B0B /* Pods-SequreSDK.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SequreSDK.debug.xcconfig"; path = "Target Support Files/Pods-SequreSDK/Pods-SequreSDK.debug.xcconfig"; sourceTree = "<group>"; };
 		47004C5F637271D227766759 /* Pods_SequreSDK_SequreSDKTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SequreSDK_SequreSDKTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F7C8D762C368581009CBEF6 /* CheckQr.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckQr.swift; sourceTree = "<group>"; };
@@ -87,6 +95,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2753E1CF2C5BC1AC0077C613 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				2753E1D02C5BC1B30077C613 /* Enums */,
+				2753E1D32C5BC2150077C613 /* SequreConfig.swift */,
+				2753E1D72C5BC3170077C613 /* EnvironmentManager.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		2753E1D02C5BC1B30077C613 /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				2753E1D12C5BC1D50077C613 /* SequreEnvironmentType.swift */,
+			);
+			path = Enums;
+			sourceTree = "<group>";
+		};
 		4F7C8D772C368581009CBEF6 /* model */ = {
 			isa = PBXGroup;
 			children = (
@@ -118,6 +144,7 @@
 		8E3CA7FE2B94D0BF00B9A1DB /* SequreSDK */ = {
 			isa = PBXGroup;
 			children = (
+				2753E1CF2C5BC1AC0077C613 /* Helpers */,
 				4F7C8D772C368581009CBEF6 /* model */,
 				8E8DDDCE2B9630960064ED29 /* tflite */,
 				8E8DDDD62B9770350064ED29 /* Resources */,
@@ -136,6 +163,7 @@
 				8E8DDDC82B962CD00064ED29 /* ColorExtension.swift */,
 				4FC3ACCC2C33E78E00C9E74B /* LocalizationService.swift */,
 				4FC3ACD02C33FC6900C9E74B /* Localizable.strings */,
+				2753E1D92C5BC5130077C613 /* SequreSDKConfiguration.swift */,
 			);
 			path = SequreSDK;
 			sourceTree = "<group>";
@@ -363,17 +391,21 @@
 			files = (
 				8E8DDDDB2B97722D0064ED29 /* (null) in Sources */,
 				8E8DDDD82B9771DB0064ED29 /* ClassificationHelper.swift in Sources */,
+				2753E1DA2C5BC5130077C613 /* SequreSDKConfiguration.swift in Sources */,
 				8E8DDDCD2B9630080064ED29 /* ObjectDetectionHelper.swift in Sources */,
 				8E3CA83B2B9559E600B9A1DB /* SequreScannerView.swift in Sources */,
 				4FC3ACCF2C33E82400C9E74B /* Strings+Localization.swift in Sources */,
 				4F7C8D782C368581009CBEF6 /* CheckQr.swift in Sources */,
 				8E3CA83A2B9559E600B9A1DB /* SequreCameraView.swift in Sources */,
+				2753E1D42C5BC2150077C613 /* SequreConfig.swift in Sources */,
+				2753E1D22C5BC1D50077C613 /* SequreEnvironmentType.swift in Sources */,
 				8E3CA83D2B9559E600B9A1DB /* SequreApi.swift in Sources */,
 				4FC3ACCD2C33E78E00C9E74B /* LocalizationService.swift in Sources */,
 				8E3CA83E2B9559E600B9A1DB /* SequreResult.swift in Sources */,
 				8E8DDDC92B962CD00064ED29 /* ColorExtension.swift in Sources */,
 				8E3CA83C2B9559E600B9A1DB /* SequreCameraService.swift in Sources */,
 				8E0DFCB12C4AE858008C4162 /* SequreResultCallback.swift in Sources */,
+				2753E1D82C5BC3180077C613 /* EnvironmentManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
