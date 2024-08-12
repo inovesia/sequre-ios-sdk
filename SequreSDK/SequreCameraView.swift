@@ -263,11 +263,10 @@ struct SequreCameraView: UIViewControllerRepresentable {
                     var debug = "image: (\(CVPixelBufferGetHeight(pixelBuffer)),\(CVPixelBufferGetWidth(pixelBuffer))) boundingBox: (\(Int(boundingBox.width)),\(Int(boundingBox.height)))"
                     self.onEvent(Color.white, "QR found", debug)
 
-//                    if !(boundingBox.minX >= left && boundingBox.maxX <= left + width &&
-//                         boundingBox.minY >= top && boundingBox.maxY <= top + height) {
-//                        self.onEvent(Color.white, "Place qr inside frame", debug)
-//                        self.processing = false
-//                    } else {
+                    if !(boundingBox.minX >= left && boundingBox.maxX <= left + width &&
+                         boundingBox.minY >= top && boundingBox.maxY <= top + height) {
+                        self.processing = false
+                    } else {
 //                        let percentage = boundingBox.width / width
                     let percentage = boundingBox.width / previewSize.width
                         debug = "image: (\(CVPixelBufferGetHeight(pixelBuffer)),\(CVPixelBufferGetWidth(pixelBuffer))) boundingBox: (\(Int(boundingBox.width)),\(Int(boundingBox.height))) percentage: \(percentage)"
@@ -276,7 +275,7 @@ struct SequreCameraView: UIViewControllerRepresentable {
                         if percentage < moveCloser {
                             self.onEvent(Color.white, "Move Closer", debug)
                             self.processing = false
-                        } else if percentage > 0.8 {
+                        } else if percentage > 0.6 {
                             self.onEvent(Color.white, "Move Further", debug)
                             self.processing = false
                         } else {
@@ -322,7 +321,7 @@ struct SequreCameraView: UIViewControllerRepresentable {
                             self.x = boundingBox.minX
                             self.y = boundingBox.minY
                         }
-//                    }
+                    }
                 } else {
 //                    self.onEvent(Color.gray, "Find QR or Adjust distance camera around 10 cm", "")
                     self.processing = false
