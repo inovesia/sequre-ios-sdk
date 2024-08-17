@@ -9,4 +9,6 @@ import Foundation
 
 internal struct SequreConfig {
     static var environment: SequreEnvironmentType = .production
+    static var zoomLevel: CGFloat = 4.0
+    static var oldVersionZoomLevel: CGFloat = 8.0
 }

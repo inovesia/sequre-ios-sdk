@@ -16,7 +16,7 @@ public struct SequreScannerView: View {
     @State var onEventColor: Color = Color.white
     @State var onEventMessage: String = ""
     @State var onEventDebug: String = ""
-    @State var zoomLevel: CGFloat = 4
+    @State var zoomLevel: CGFloat = SequreConfig.zoomLevel
     @State var cameraViewTopPos: CGFloat = 0
     
     var resultCallback: SequreResultCallback

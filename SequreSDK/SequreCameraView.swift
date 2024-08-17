@@ -86,7 +86,24 @@ struct SequreCameraView: UIViewControllerRepresentable {
             self.onEvent = onEvent
         }
         
-        func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
+        func metadataOutput(_ output: AVCaptureMetadataOutput, 
+                            didOutput metadataObjects: [AVMetadataObject],
+                            from connection: AVCaptureConnection) {
+            if let metadataObject = metadataObjects.first {
+                guard let readableObject = metadataObject as? AVMetadataMachineReadableCodeObject,
+                      let stringValue = readableObject.stringValue
+                else { return }
+                self.qrcode = stringValue
+                
+                let status = statuses[self.qrcode]
+                let isExpired = (NSDate().timeIntervalSince1970 - (status?.timestamp ?? 0.0)) > (5 * 60)
+                if (status == nil || isExpired) {
+                    statuses[self.qrcode] = QrcodeStatus(status: "Active",
+                                                         timestamp: NSDate().timeIntervalSince1970)
+                }
+            }
+
+            /*
             if let metadataObject = metadataObjects.first {
                 guard let readableObject = metadataObject as? AVMetadataMachineReadableCodeObject else { return }
                 guard let stringValue = readableObject.stringValue else { return }
@@ -132,6 +149,7 @@ struct SequreCameraView: UIViewControllerRepresentable {
                     }
                 }
             }
+            */
         }
         
         func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {

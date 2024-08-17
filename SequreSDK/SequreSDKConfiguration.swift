@@ -17,4 +17,14 @@ public final class SequreSDKConfiguration {
         print("=================================================================")
 #endif
     }
+    
+    public static func set(zoomLevel level: CGFloat) {
+        SequreConfig.zoomLevel = level
+        
+#if DEBUG
+        print("=========================== SequreSDK ===========================")
+        print("ZOOM LEVEL: \(SequreConfig.zoomLevel)")
+        print("=================================================================")
+#endif
+    }
 }

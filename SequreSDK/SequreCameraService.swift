@@ -83,11 +83,7 @@ class SequreCameraService {
                 previewLayer.videoGravity = .resizeAspectFill
                 
                 try device.lockForConfiguration()
-                if isIphoneLarge() {
-                    device.videoZoomFactor = 9.0
-                } else {
-                    device.videoZoomFactor = 5.0
-                }
+                device.videoZoomFactor = zoomLevel
                 device.focusMode = .continuousAutoFocus
                 device.unlockForConfiguration()
 
@@ -104,12 +100,15 @@ class SequreCameraService {
         }
     }
     
-    func isIphoneLarge() -> Bool {
-        switch UIDevice().type {
-            case .iPhone12ProMax, .iPhone13ProMax, .iPhone14, .iPhone14Pro, .iPhone14Plus, .iPhone14ProMax, .iPhone15, .iPhone15Pro, .iPhone15Plus, .iPhone15ProMax:
-                return true
+    var zoomLevel: CGFloat {
+        get {
+            switch UIDevice().type {
+            case .iPhoneX, .iPhoneXR, .iPhoneXS, .iPhoneSE, .iPhoneSE2, .iPhoneSE3, .iPhone11, .iPhone11Pro, .iPhone11ProMax, .iPhone12, .iPhone12Pro, .iPhone12Mini, .iPhone12ProMax:
+                return SequreConfig.oldVersionZoomLevel
+                
             default:
-                return false
+                return SequreConfig.zoomLevel
+            }
         }
     }
     
