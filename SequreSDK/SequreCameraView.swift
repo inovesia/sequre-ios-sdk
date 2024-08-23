@@ -153,7 +153,7 @@ struct SequreCameraView: UIViewControllerRepresentable {
         }
         
         func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
-            DispatchQueue.global(qos: .background).async { [self] in
+            DispatchQueue.global(qos: .default).async { [self] in
                 self.parent.cameraService.stop()
 //                NSLog("photoOutput")
                 var result = SequreResult()
@@ -231,119 +231,117 @@ struct SequreCameraView: UIViewControllerRepresentable {
             if processing {
                 return
             }
-            DispatchQueue.global(qos: .background).async {
-                self.processing = true
-//                NSLog("objectDetection")
-                let pixelBuffer: CVPixelBuffer? = CMSampleBufferGetImageBuffer(sampleBuffer)
-                guard let pixelBuffer = pixelBuffer else {
-                    self.processing = false
-                    return
-                }
-                
-                guard let _objectDetectionHelper = self.objectDetectionHelper else { return }
-                let results = _objectDetectionHelper.detect(frame: pixelBuffer)
-                guard let displayResult = results else {
-                    self.processing = false
-                    return
-                }
-                if displayResult.detections.count > 0 {
-                    var detection: Detection? = nil
-                    for result in displayResult.detections {
-                        if detection == nil {
+            self.processing = true
+            //                NSLog("objectDetection")
+            let pixelBuffer: CVPixelBuffer? = CMSampleBufferGetImageBuffer(sampleBuffer)
+            guard let pixelBuffer = pixelBuffer else {
+                self.processing = false
+                return
+            }
+            
+            guard let _objectDetectionHelper = self.objectDetectionHelper else { return }
+            let results = _objectDetectionHelper.detect(frame: pixelBuffer)
+            guard let displayResult = results else {
+                self.processing = false
+                return
+            }
+            if displayResult.detections.count > 0 {
+                var detection: Detection? = nil
+                for result in displayResult.detections {
+                    if detection == nil {
+                        detection = result
+                    } else {
+                        if result.categories[0].score > (detection?.categories[0].score)! {
                             detection = result
-                        } else {
-                            if result.categories[0].score > (detection?.categories[0].score)! {
-                                detection = result
-                            }
                         }
                     }
-                    guard let detection = detection else {
+                }
+                guard let detection = detection else {
+                    self.processing = false
+                    return
+                }
+                let screenSize: CGRect = UIScreen.main.bounds
+                self.parent.cameraService.focus(point: CGPoint(x: screenSize.width / 2, y: screenSize.height / 2))
+                var moveCloser = 0.5
+                //                    if self.parent.cameraService.isIphoneLarge() {
+                //                        moveCloser = 0.7
+                //                    }
+                var moveFuther = 0.8
+                
+                let previewSize = CGRect(x: 0, y: 0, width: CVPixelBufferGetHeight(pixelBuffer), height: CVPixelBufferGetWidth(pixelBuffer))
+                let ratio = 1.0 / 2.0
+                let frame = 0.8
+                let width = previewSize.width * frame
+                let height = width / ratio
+                let left = (previewSize.width - width) / 2
+                let top = (previewSize.height - height) / 2
+                
+                let boundingBox = detection.boundingBox.tranform()
+                var debug = "image: (\(CVPixelBufferGetHeight(pixelBuffer)),\(CVPixelBufferGetWidth(pixelBuffer))) boundingBox: (\(Int(boundingBox.width)),\(Int(boundingBox.height)))"
+                self.onEvent(Color.white, "QR found", debug)
+                
+                if !(boundingBox.minX >= left && boundingBox.maxX <= left + width &&
+                     boundingBox.minY >= top && boundingBox.maxY <= top + height) {
+                    self.processing = false
+                } else {
+                    //                        let percentage = boundingBox.width / width
+                    let percentage = boundingBox.width / previewSize.width
+                    debug = "image: (\(CVPixelBufferGetHeight(pixelBuffer)),\(CVPixelBufferGetWidth(pixelBuffer))) boundingBox: (\(Int(boundingBox.width)),\(Int(boundingBox.height))) percentage: \(percentage)"
+                    //                        NSLog(debug)
+                    //                        print("percentage: \(percentage) moveCloser: \(moveCloser) ")
+                    if percentage < moveCloser {
+                        self.onEvent(Color.white, "Move Closer", debug)
                         self.processing = false
-                        return
-                    }
-                    let screenSize: CGRect = UIScreen.main.bounds
-                    self.parent.cameraService.focus(point: CGPoint(x: screenSize.width / 2, y: screenSize.height / 2))
-                    var moveCloser = 0.5
-//                    if self.parent.cameraService.isIphoneLarge() {
-//                        moveCloser = 0.7
-//                    }
-                    var moveFuther = 0.8
-                    
-                    let previewSize = CGRect(x: 0, y: 0, width: CVPixelBufferGetHeight(pixelBuffer), height: CVPixelBufferGetWidth(pixelBuffer))
-                    let ratio = 1.0 / 2.0
-                    let frame = 0.8
-                    let width = previewSize.width * frame
-                    let height = width / ratio
-                    let left = (previewSize.width - width) / 2
-                    let top = (previewSize.height - height) / 2
-                    
-                    let boundingBox = detection.boundingBox.tranform()
-                    var debug = "image: (\(CVPixelBufferGetHeight(pixelBuffer)),\(CVPixelBufferGetWidth(pixelBuffer))) boundingBox: (\(Int(boundingBox.width)),\(Int(boundingBox.height)))"
-                    self.onEvent(Color.white, "QR found", debug)
-
-                    if !(boundingBox.minX >= left && boundingBox.maxX <= left + width &&
-                         boundingBox.minY >= top && boundingBox.maxY <= top + height) {
+                    } else if percentage > 0.6 {
+                        self.onEvent(Color.white, "Move Further", debug)
                         self.processing = false
                     } else {
-//                        let percentage = boundingBox.width / width
-                    let percentage = boundingBox.width / previewSize.width
-                        debug = "image: (\(CVPixelBufferGetHeight(pixelBuffer)),\(CVPixelBufferGetWidth(pixelBuffer))) boundingBox: (\(Int(boundingBox.width)),\(Int(boundingBox.height))) percentage: \(percentage)"
-//                        NSLog(debug)
-//                        print("percentage: \(percentage) moveCloser: \(moveCloser) ")
-                        if percentage < moveCloser {
-                            self.onEvent(Color.white, "Move Closer", debug)
-                            self.processing = false
-                        } else if percentage > 0.6 {
-                            self.onEvent(Color.white, "Move Further", debug)
-                            self.processing = false
-                        } else {
-                            
-//                            NSLog("with: \(screenSize.width) height: \(screenSize.height)")
-//                            NSLog("x1: \(boundingBox.minX) y1: \(boundingBox.minY) x2: \(boundingBox.maxX ) y2: \(boundingBox.maxY) width: \(boundingBox.width) height: \(boundingBox.height)")
-//                            NSLog("left: \(left) top: \(top) right: \(left + width) bottom: \(top + height)")
-                            
-                            let distance = sqrt(pow(boundingBox.minX - self.x, 2) + pow(boundingBox.minY - self.y, 2))
-                            let length = 3
-                            let max = 40.0
-                            if self.distances.count >= length {
-                                self.distances.removeFirst()
+                        
+                        //                            NSLog("with: \(screenSize.width) height: \(screenSize.height)")
+                        //                            NSLog("x1: \(boundingBox.minX) y1: \(boundingBox.minY) x2: \(boundingBox.maxX ) y2: \(boundingBox.maxY) width: \(boundingBox.width) height: \(boundingBox.height)")
+                        //                            NSLog("left: \(left) top: \(top) right: \(left + width) bottom: \(top + height)")
+                        
+                        let distance = sqrt(pow(boundingBox.minX - self.x, 2) + pow(boundingBox.minY - self.y, 2))
+                        let length = 3
+                        let max = 40.0
+                        if self.distances.count >= length {
+                            self.distances.removeFirst()
+                        }
+                        self.distances.append(distance)
+                        if self.distances.count == length {
+                            // find average
+                            var total = CGFloat.zero
+                            for distance in self.distances {
+                                total += distance
                             }
-                            self.distances.append(distance)
-                            if self.distances.count == length {
-                                // find average
-                                var total = CGFloat.zero
-                                for distance in self.distances {
-                                    total += distance
-                                }
-                                let average = total / CGFloat(length)
-//                                NSLog("average: \(average)")
-                                debug = "image: (\(CVPixelBufferGetHeight(pixelBuffer)),\(CVPixelBufferGetWidth(pixelBuffer))) boundingBox: (\(Int(detection.boundingBox.width)),\(Int(detection.boundingBox.height))) percentage: \(percentage) average: \(average)"
-                                self.onEvent(Color.green, "Hold Steady", debug)
-                                
-                                if  average <= max {
-//                                    NSLog("capturePhoto")
-                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0) {
-                                        self.parent.cameraService.capturePhoto()
-//                                        self.processing = false
-                                    }
-                                } else {
-                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0) {
-                                        self.processing = false
-                                    }
+                            let average = total / CGFloat(length)
+                            //                                NSLog("average: \(average)")
+                            debug = "image: (\(CVPixelBufferGetHeight(pixelBuffer)),\(CVPixelBufferGetWidth(pixelBuffer))) boundingBox: (\(Int(detection.boundingBox.width)),\(Int(detection.boundingBox.height))) percentage: \(percentage) average: \(average)"
+                            self.onEvent(Color.green, "Hold Steady", debug)
+                            
+                            if  average <= max {
+                                //                                    NSLog("capturePhoto")
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0) {
+                                    self.parent.cameraService.capturePhoto()
+                                    //                                        self.processing = false
                                 }
                             } else {
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 0) {
                                     self.processing = false
                                 }
                             }
-                            self.x = boundingBox.minX
-                            self.y = boundingBox.minY
+                        } else {
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0) {
+                                self.processing = false
+                            }
                         }
+                        self.x = boundingBox.minX
+                        self.y = boundingBox.minY
                     }
-                } else {
-//                    self.onEvent(Color.gray, "Find QR or Adjust distance camera around 10 cm", "")
-                    self.processing = false
                 }
+            } else {
+                //                    self.onEvent(Color.gray, "Find QR or Adjust distance camera around 10 cm", "")
+                self.processing = false
             }
         }
         
